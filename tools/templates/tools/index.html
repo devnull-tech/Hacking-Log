@@ -1,0 +1,17 @@
+{% extends 'guest.html' %}
+{% block content %}
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {% for tool in tools %}
+                <a href="{% url 'tool' tool_id=tool.id %}" class="block max-w-sm rounded overflow-hidden shadow-lg bg-gray-800 p-4 hover:bg-gray-700 transition duration-300">
+                    <div class="px-6 py-4">
+                        <div class="font-bold text-xl mb-2 text-white">{{ tool.tool_name }}</div>
+                        <p class="text-gray-300 text-base">
+                            {{ tool.description }}
+                        </p>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

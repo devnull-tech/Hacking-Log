@@ -1,0 +1,100 @@
+# Django
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+
+# Python
+*.py[cod]
+*.egg
+*.egg-info/
+*.eggs/
+dist/
+build/
+*.pyd
+*.pyo
+
+# Environments
+.env
+venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+.venv/
+Pipfile.lock
+
+# Django Logs
+*.log
+
+# Django Migrations
+*.pot
+*.pyc
+__pycache__/
+db.sqlite3
+/media/
+*.sqlite3
+
+# Pytest
+.pytest_cache/
+
+# VS Code
+.vscode/
+.idea/
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnp/
+.pnp.js
+# Bun
+.bun/*
+# Parcel-bundler
+.cache/
+dist/
+.parcel-cache/
+
+# Storybook
+out/
+
+# Next.js
+.next/
+
+# Nuxt.js
+.nuxt/
+dist/
+
+# Rollup.js
+dist/
+
+# Svelte
+__sapper__/
+public/
+
+# Vue.js
+dist/
+*.local
+*.sublime-project
+*.sublime-workspace
+
+# Nuxt.js
+.nuxt/
+static/
+dist/
+
+# Faust.js
+.out/
+
+# MacOS
+.DS_Store
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln

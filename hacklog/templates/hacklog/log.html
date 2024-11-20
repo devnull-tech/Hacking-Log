@@ -1,0 +1,13 @@
+{% extends 'guest.html' %}
+{% block content %}
+    <div class="prose prose-dark">
+        <h1>{{ log.vm_name }}</h1>
+        <h2>Virtual Machine Details</h2>
+        <p>Platform: {{ log.platform }}</p>
+        <p>Operating System: {{ log.operating_system }}</p>
+        <p>Tags: {{ log.tags }}</p>
+        <p>Writeup Created At: {{ log.created_at }}</p>
+        <h2>Writeup</h2>
+        {{ log.html_writeup|safe }}
+    </div>  
+{% endblock %}

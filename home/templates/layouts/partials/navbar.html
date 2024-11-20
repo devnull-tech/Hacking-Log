@@ -1,0 +1,36 @@
+{% load static %}
+    <nav class="bg-gray-800 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="{% url 'home' %}" class="flex items-center">
+                <img src="data:image/png;base64,{{ layout_data.base64_banner }}" class="h-8 w-8 mr-2" alt="Logo">
+                <span class="text-xl font-bold">Hacking Log</span>
+            </a>
+            <div class="hidden md:flex space-x-4">
+                <a href="{% url 'vulnhub_index' %}" class="hover:bg-gray-700 px-3 py-2 rounded">VulnHub</a>
+                <a href="{% url 'hackthebox_index' %}" class="hover:bg-gray-700 px-3 py-2 rounded">HackTheBox</a>
+                <a href="{% url 'tools_index' %}" class="hover:bg-gray-700 px-3 py-2 rounded">Tools</a>
+                <a href="{% url 'contact' %}" class="hover:bg-gray-700 px-3 py-2 rounded">Contact</a>
+            </div>
+            <div class="md:hidden flex items-center">
+                <button id="mobile-menu-button">
+                    <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+    <div id="mobile-menu" class="hidden bg-gray-800 md:hidden">
+        <a href="{% url 'vulnhub_index' %}" class="block px-4 py-2 hover:bg-gray-700">VulnHub</a>
+        <a href="{% url 'hackthebox_index' %}" class="block px-4 py-2 hover:bg-gray-700">HackTheBox</a>
+        <a href="{% url 'tools_index' %}" class="block px-4 py-2 hover:bg-gray-700">Tools</a>
+        <a href="{% url 'contact' %}" class="block px-4 py-2 hover:bg-gray-700">Contact</a>
+    </div>
+    <script>
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
