@@ -1,4 +1,6 @@
 {% extends 'guest.html' %}
 {% block content %}
-    {% lorem 5 b random %}
+    <div class="prose prose-dark">
+        {{ layout_data.home_html|safe }}
+    </div> 
 {% endblock %}
