@@ -7,7 +7,7 @@ import json
 class VisitorMiddleware(MiddlewareMixin):
     def export_visitors_to_sql(self):
         timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-        output_file = f'visitors_export_{timestamp}.json'
+        output_file = f'logs/visitors_export_{timestamp}.json'
         with open(output_file, 'w') as f:
             visitors_data = []
             for visitor in Visitor.objects.all():
