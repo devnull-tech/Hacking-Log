@@ -25,3 +25,11 @@ def log(request, log_id):
         'layout_data': layout_data,
         'log': log
     })
+
+def glosary(request):
+    layout_data = Layout.objects.filter(in_use=True).first()
+    all_terms = models.Term.objects.all()
+    return render(request, 'hacklog/terms.html', {
+        'layout_data': layout_data,
+        'terms': all_terms
+    })

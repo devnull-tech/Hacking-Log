@@ -1,0 +1,14 @@
+{% extends 'guest.html' %}
+{% block content %}
+    <div class="prose prose-dark w-full">
+        <h1>Glosario</h1>
+        <div>
+            {% for term in terms %}
+                <div>
+                    <h2>{{ term.term }}</h2>
+                    <p>{{ term.description }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>  
+{% endblock %}

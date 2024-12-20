@@ -1,5 +1,8 @@
 from django.contrib import admin
-from .models import Log
+from .models import Log, Term
+
+class TermAdmin(admin.ModelAdmin):
+    list_display = ['term']
 
 class LogAdmin(admin.ModelAdmin):
     def enable_or_disable_selected_logs(self, request, queryset):
@@ -11,3 +14,4 @@ class LogAdmin(admin.ModelAdmin):
     list_display = ['vm_name', 'platform', 'operating_system', 'is_public', 'created_at']
 
 admin.site.register(Log, LogAdmin)
+admin.site.register(Term, TermAdmin)
