@@ -9,6 +9,7 @@ class Log(models.Model):
     operating_system = models.CharField(max_length=20)
     tags = models.CharField(max_length=200)
     html_writeup = models.TextField()
+    is_public = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

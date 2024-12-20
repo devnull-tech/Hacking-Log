@@ -3,10 +3,12 @@
     <div class="prose prose-dark">
         <h1>{{ log.vm_name }}</h1>
         <h2>Detalles de Máquina Virtual</h2>
-        <p>Plataforma: {{ log.platform }}</p>
-        <p>Sistema Operativo: {{ log.operating_system }}</p>
-        <p>Etiquetas: {{ log.tags }}</p>
-        <p>Writeup creado el: {{ log.created_at }}</p>
+        <ul>
+            <li>Plataforma: {{ log.platform }}</li>
+            <li>Sistema Operativo: {{ log.operating_system }}</li>
+            <li>Etiquetas: {{ log.tags }}</li>
+            <li>Writeup creado el: {{ log.created_at }}</li>
+        </ul>
         <h2>Writeup</h2>
         {{ log.html_writeup|safe }}
     </div>  

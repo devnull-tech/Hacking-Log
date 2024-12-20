@@ -12,7 +12,7 @@ def index(request):
         platform = "VH"
     if request.path == "/hacklog/hackthebox/":
         platform = "HTB"
-    logs = models.Log.objects.filter(platform=platform)
+    logs = models.Log.objects.filter(platform=platform, is_public=True)
     return render(request, 'hacklog/index.html', {
         'layout_data': layout_data,
         'logs': logs
@@ -20,7 +20,7 @@ def index(request):
 
 def log(request, log_id):
     layout_data = Layout.objects.filter(in_use=True).first()
-    log = get_object_or_404(models.Log, id=log_id)
+    log = get_object_or_404(models.Log, id=log_id, is_public=True)
     return render(request, 'hacklog/log.html', {
         'layout_data': layout_data,
         'log': log

@@ -1,3 +1,6 @@
+# Application Data
+logs_data.json
+
 # Django
 *.log
 *.pot
