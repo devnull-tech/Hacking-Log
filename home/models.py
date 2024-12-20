@@ -14,9 +14,12 @@ class Layout(models.Model):
 class Visitor(models.Model):
     url = models.URLField()
     ip_address = models.GenericIPAddressField()
+    country = models.CharField(max_length=70)
+    city = models.CharField(max_length=200)
+    method = models.TextField(default="GET")
+    payload = models.TextField(default="")
     timestamp = models.DateTimeField(auto_now_add=True)
     
-    # TODO: Get country and more data
     def __str__(self) -> str:
         return self.ip_address
     
