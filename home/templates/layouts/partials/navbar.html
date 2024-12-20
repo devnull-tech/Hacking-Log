@@ -6,10 +6,11 @@
                 <span class="text-xl font-bold">Hacking Log</span>
             </a>
             <div class="hidden md:flex space-x-4">
+                <a href="{% url 'home' %}" class="hover:bg-gray-700 px-3 py-2 rounded">Inicio</a>
                 <a href="{% url 'vulnhub_index' %}" class="hover:bg-gray-700 px-3 py-2 rounded">VulnHub</a>
                 <a href="{% url 'hackthebox_index' %}" class="hover:bg-gray-700 px-3 py-2 rounded">HackTheBox</a>
-                <a href="{% url 'tools_index' %}" class="hover:bg-gray-700 px-3 py-2 rounded">Tools</a>
-                <a href="{% url 'contact' %}" class="hover:bg-gray-700 px-3 py-2 rounded">Contact</a>
+                <a href="{% url 'tools_index' %}" class="hover:bg-gray-700 px-3 py-2 rounded">Herramientas</a>
+                <a href="{% url 'contact' %}" class="hover:bg-gray-700 px-3 py-2 rounded">Contacto</a>
             </div>
             <div class="md:hidden flex items-center">
                 <button id="mobile-menu-button">
@@ -21,10 +22,11 @@
         </div>
     </nav>
     <div id="mobile-menu" class="hidden bg-gray-800 md:hidden">
+        <a href="{% url 'home' %}" class="block px-4 py-2 hover:bg-gray-700">Inicio</a>
         <a href="{% url 'vulnhub_index' %}" class="block px-4 py-2 hover:bg-gray-700">VulnHub</a>
         <a href="{% url 'hackthebox_index' %}" class="block px-4 py-2 hover:bg-gray-700">HackTheBox</a>
-        <a href="{% url 'tools_index' %}" class="block px-4 py-2 hover:bg-gray-700">Tools</a>
-        <a href="{% url 'contact' %}" class="block px-4 py-2 hover:bg-gray-700">Contact</a>
+        <a href="{% url 'tools_index' %}" class="block px-4 py-2 hover:bg-gray-700">Herramientas</a>
+        <a href="{% url 'contact' %}" class="block px-4 py-2 hover:bg-gray-700">Contacto</a>
     </div>
     <script>
         const mobileMenuButton = document.getElementById('mobile-menu-button');

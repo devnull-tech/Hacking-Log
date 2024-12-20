@@ -7,7 +7,7 @@ SECRET_KEY = 'django-insecure-)jq#ymv4zie+@15i(ekb364q!g15(&y$6fi*0(-o_w6lr(v_+8
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1']
+ALLOWED_HOSTS = ['lpuentesr.pythonanywhere.com', '127.0.0.1']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -53,6 +53,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'kernel.wsgi.application'
 
+DATA_UPLOAD_MAX_MEMORY_SIZE = 100000000
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -84,6 +86,8 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
+
+#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
