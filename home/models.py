@@ -10,4 +10,13 @@ class Layout(models.Model):
 
     def __str__(self) -> str:
         return self.layout_name
+
+class Visitor(models.Model):
+    url = models.URLField()
+    ip_address = models.GenericIPAddressField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+    
+    # TODO: Get country and more data
+    def __str__(self) -> str:
+        return self.ip_address
     
