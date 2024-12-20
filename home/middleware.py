@@ -25,7 +25,8 @@ class VisitorMiddleware(MiddlewareMixin):
     def process_view(self, request, view_func, *args, **kwargs):
         if request.path.startswith('/admin/'):
             return None
-        r = requests.get("http://ip-api.com/json/" + request.META['REMOTE_ADDR'])
+        ip_address = request.META.get('HTTP_X_FORWARDED_FOR', request.META['REMOTE_ADDR']).split(',')[0].strip()
+        r = requests.get("http://ip-api.com/json/" + ip_address)
         ip_data = json.loads(r.text)
         payload = request.body.decode('utf-8') if request.body else ""
         Visitor.objects.create(
