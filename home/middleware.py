@@ -31,7 +31,7 @@ class VisitorMiddleware(MiddlewareMixin):
         payload = request.body.decode('utf-8') if request.body else ""
         Visitor.objects.create(
             url = request.build_absolute_uri(),
-            ip_address = request.META['REMOTE_ADDR'],
+            ip_address = ip_address,
             country = ip_data.get('country', 'Unknown'),
             city = ip_data.get('city', 'Unknown'),
             method = request.method,
