@@ -1,6 +1,7 @@
 # Application Data
 logs_data.json
 tools_data.json
+home/logs/*
 
 # Django
 *.log
