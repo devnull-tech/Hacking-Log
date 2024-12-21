@@ -1,5 +1,6 @@
 {% extends 'guest.html' %}
 {% load hashtags %}
+{% load static %}
 {% block content %}
     <div class="container mx-auto px-4">
         <input type="text" id="searchInput" placeholder="Buscar por nombre o tag" class="w-full bg-gray-800 text-white border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus-ring-blue-500">
@@ -16,22 +17,5 @@
             {% endfor %}
         </div>
     </div>
-    <script>
-        const searchInput = document.getElementById('searchInput');
-        const searchResults = document.getElementById('searchResults');
-        
-        searchInput.addEventListener('input', (event) => {
-            const searchTerm = event.target.value.toLowerCase();
-            const logs = searchResults.querySelectorAll('a');
-        
-            logs.forEach(log => {
-            const logText = log.textContent.toLowerCase();
-            if (logText.includes(searchTerm)) {
-                log.style.display = 'block';
-            } else {
-                log.style.display = 'none';
-            }
-            });
-        });
-    </script>
+    <script src="{% static 'scripts/search.js' %}"></script>
 {% endblock %}

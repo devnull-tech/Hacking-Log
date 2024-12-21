@@ -26,8 +26,11 @@ class VisitorMiddleware(MiddlewareMixin):
         if request.path.startswith('/admin/'):
             return None
         ip_address = request.META.get('HTTP_X_FORWARDED_FOR', request.META['REMOTE_ADDR']).split(',')[0].strip()
-        r = requests.get("http://ip-api.com/json/" + ip_address)
-        ip_data = json.loads(r.text)
+        try:
+            r = requests.get("http://ip-api.com/json/" + ip_address)
+            ip_data = json.loads(r.text)
+        except Exception:
+            ip_data = {}
         payload = request.body.decode('utf-8') if request.body else ""
         Visitor.objects.create(
             url = request.build_absolute_uri(),
@@ -37,7 +40,6 @@ class VisitorMiddleware(MiddlewareMixin):
             method = request.method,
             payload = payload
         )
-        
         if Visitor.objects.count() >= 5000:
             self.export_visitors_to_sql()
             Visitor.objects.all().delete()
