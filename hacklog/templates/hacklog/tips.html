@@ -1,0 +1,17 @@
+{% extends 'guest.html' %}
+{% load static %}
+{% block content %}
+<div class="container mx-auto px-4">
+    <h1 class="text-4xl font-bold">Tips</h1> Acceso rápido a conocimiento específico.
+    <input type="text" id="searchInput" placeholder="Buscar tip" class="mt-2 w-full bg-gray-800 text-white border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus-ring-blue-500">
+    <div class="mt-2 grid grid-cols-1 md:grid-cols-2 gap-4" id="searchResults">
+        {% for tip in tips %}
+        <a class="border border-gray-700 bg-gray-800 p-4 shadow">
+            <h2 class="text-2xl font-bold">{{ tip.title }}</h2>
+            <div class="prose prose-dark w-full">{{ tip.html_content|safe }}</div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+<script src="{% static 'scripts/search.js' %}"></script>
+{% endblock %}

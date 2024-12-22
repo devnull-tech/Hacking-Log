@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
 from home.models import Layout
 from . import models
 
@@ -28,7 +28,7 @@ def log(request, log_id):
         })
     if request.method == 'POST':
         question = request.POST.get('question')
-        bot = models.Bot.objects.filter(in_use=True).first()
+        bot = get_list_or_404(models.Bot, in_use=True)[0]
         answer = bot.send_prompt(question)
         return render(request, 'hacklog/log.html', {
             'layout_data': layout_data,
@@ -43,4 +43,12 @@ def glosary(request):
     return render(request, 'hacklog/terms.html', {
         'layout_data': layout_data,
         'terms': all_terms
+    })
+    
+def tips(request):
+    layout_data = Layout.objects.filter(in_use=True).first()
+    all_tips = models.Tip.objects.all()
+    return render(request, 'hacklog/tips.html', {
+        'layout_data': layout_data,
+        'tips': all_tips
     })

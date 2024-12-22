@@ -1,6 +1,13 @@
 from django.db import models
 from openai import OpenAI
 
+class Tip(models.Model):
+    title = models.CharField(max_length=200)
+    html_content = models.TextField()
+    
+    def __str__(self):
+        return self.title
+
 class Bot(models.Model):
     provider = models.CharField(max_length=50)
     model = models.CharField(max_length=100)
@@ -30,6 +37,9 @@ class Bot(models.Model):
             'response_tokens': completion.usage.completion_tokens,
             'bot': self
         }
+        
+    def __str__(self):
+        return self.provider
 
 class Term(models.Model):
     term = models.CharField(max_length=255)
