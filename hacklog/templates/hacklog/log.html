@@ -1,15 +1,46 @@
 {% extends 'guest.html' %}
 {% block content %}
-    <div class="prose prose-dark">
-        <h1>{{ log.vm_name }}</h1>
-        <h2>Detalles de Máquina Virtual</h2>
-        <ul>
-            <li>Plataforma: {{ log.platform }}</li>
-            <li>Sistema Operativo: {{ log.operating_system }}</li>
-            <li>Etiquetas: {{ log.tags }}</li>
-            <li>Writeup creado el: {{ log.created_at }}</li>
-        </ul>
-        <h2>Writeup</h2>
-        {{ log.html_writeup|safe }}
-    </div>  
+<div class="prose prose-dark">
+    <h1>{{ log.vm_name }}</h1>
+    <h2>Detalles de Máquina Virtual</h2>
+    <ul>
+        <li>Plataforma: {{ log.platform }}</li>
+        <li>Sistema Operativo: {{ log.operating_system }}</li>
+        <li>Etiquetas: {{ log.tags }}</li>
+        <li>Writeup creado el: {{ log.created_at }}</li>
+    </ul>
+    <h2>Writeup</h2>
+    {{ log.html_writeup|safe }}
+</div>
+{% if user.is_authenticated %}
+<div class="mt-4 sm:mt-6 sm:mx-3 p-4 border bg-gray-800 w-full">
+    <form class="w-full" method="POST" id="quest_form">
+        {% csrf_token %}
+        <div class="w-full flex">
+            <input maxlength=150 type="text" name="question" class="mt-2 w-full bg-gray-800 text-white border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus-ring-blue-500" placeholder="Pregúntame algo">
+            <button id="submit" type="submit" class="mx-2 px-3 bg-blue-700 text-white">Enviar</button>
+        </div>
+    </form>
+    {% if question %}
+    <div class="bg-gray-600 w-full p-3 mt-2" style="border: 1px solid #6b7280;">
+        <p class="font-bold">{{ question }}</p>
+        {{ answer }}
+    </div>
+    {% endif %}
+    <div id="spinner" class="w-full flex justify-center items-center mt-2 "></div>
+</div>
+<script>
+    window.addEventListener('load', () => {
+        var form = document.getElementById('quest_form')
+        var spinner = document.getElementById('spinner')
+        var submit = document.getElementById('submit')
+
+        form.addEventListener('submit', () => {
+            spinner.innerHTML = '<div class="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-neutral-600 motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-neutral-600" role="status"><span class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]" >Loading...</span></div>';
+            submit.disabled = true;
+            submit.className = "mx-2 px-3 bg-blue-400 text-white"
+        })
+    })
+</script>
+{% endif %}
 {% endblock %}

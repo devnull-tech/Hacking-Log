@@ -1,5 +1,8 @@
 from django.contrib import admin
-from .models import Log, Term
+from .models import Log, Term, Bot
+
+class BotAdmin(admin.ModelAdmin):
+    list_display = ['provider', 'model', 'in_use']
 
 class TermAdmin(admin.ModelAdmin):
     list_display = ['term']
@@ -15,3 +18,4 @@ class LogAdmin(admin.ModelAdmin):
 
 admin.site.register(Log, LogAdmin)
 admin.site.register(Term, TermAdmin)
+admin.site.register(Bot, BotAdmin)

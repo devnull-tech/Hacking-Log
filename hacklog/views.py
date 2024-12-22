@@ -21,10 +21,21 @@ def index(request):
 def log(request, log_id):
     layout_data = Layout.objects.filter(in_use=True).first()
     log = get_object_or_404(models.Log, id=log_id, is_public=True)
-    return render(request, 'hacklog/log.html', {
-        'layout_data': layout_data,
-        'log': log
-    })
+    if request.method == 'GET':
+        return render(request, 'hacklog/log.html', {
+            'layout_data': layout_data,
+            'log': log
+        })
+    if request.method == 'POST':
+        question = request.POST.get('question')
+        bot = models.Bot.objects.filter(in_use=True).first()
+        answer = bot.send_prompt(question)
+        return render(request, 'hacklog/log.html', {
+            'layout_data': layout_data,
+            'log': log,
+            'question':question,
+            'answer': answer['text']
+        })
 
 def glosary(request):
     layout_data = Layout.objects.filter(in_use=True).first()
