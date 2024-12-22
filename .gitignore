@@ -1,6 +1,5 @@
 # Application Data
-logs_data.json
-tools_data.json
+data/
 home/logs/*
 static/admin
 
