@@ -7,5 +7,6 @@ urlpatterns = [
     path('vulnhub/', views.index, name='vulnhub_index'),
     path('hackthebox/', views.index, name='hackthebox_index'),
     path('glosary/', views.glosary, name='glosary'),
+    path('term/<int:term_id>/', views.term, name='term'),
     path('tips/', views.tips, name='tips')
 ]

@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from home.models import Layout
 from . import models
 
@@ -32,6 +32,16 @@ def glosary(request):
     return render(request, 'hacklog/terms.html', {
         'layout_data': layout_data,
         'terms': all_terms
+    })
+
+def term(request, term_id):
+    layout_data = Layout.objects.filter(in_use=True).first()
+    term = get_object_or_404(models.Term, id=term_id)
+    term_as_list = []
+    term_as_list.append(term)
+    return render(request, 'hacklog/terms.html', {
+        'layout_data': layout_data,
+        'terms': term_as_list
     })
     
 def tips(request):
