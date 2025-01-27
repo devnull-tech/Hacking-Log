@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Layout(models.Model):
     layout_name = models.CharField(max_length=100)
@@ -12,6 +13,7 @@ class Layout(models.Model):
         return self.layout_name
 
 class Visitor(models.Model):
+    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
     url = models.URLField()
     ip_address = models.GenericIPAddressField()
     country = models.CharField(max_length=70)
@@ -22,4 +24,3 @@ class Visitor(models.Model):
     
     def __str__(self) -> str:
         return self.ip_address
-    

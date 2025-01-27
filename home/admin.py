@@ -5,8 +5,8 @@ class LayoutAdmin(admin.ModelAdmin):
     list_display = ['layout_name', 'in_use']
 
 class VisitorAdmin(admin.ModelAdmin):
-    list_display = ['ip_address', 'country', 'url', 'method', 'timestamp']
-    readonly_fields = ['ip_address', 'country', 'city', 'url', 'method', 'payload', 'timestamp']
+    list_display = ['ip_address', 'user', 'url', 'country', 'city', 'method']
+    readonly_fields = ['user', 'ip_address', 'country', 'city', 'url', 'method', 'payload', 'timestamp']
     
     def has_add_permission(self, request):
         return False

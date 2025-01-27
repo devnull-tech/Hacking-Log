@@ -4,7 +4,7 @@
     <h1>{{ log.vm_name }}</h1>
     <h2>Detalles de Máquina Virtual</h2>
     <ul>
-        <li>Plataforma: {{ log.platform }}</li>
+        <li>Plataforma: {{ log.get_platform_display }}</li>
         <li>Sistema Operativo: {{ log.operating_system }}</li>
         <li>Etiquetas: {{ log.tags }}</li>
         <li>Writeup creado el: {{ log.created_at }}</li>

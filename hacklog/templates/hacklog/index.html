@@ -2,20 +2,26 @@
 {% load hashtags %}
 {% load static %}
 {% block content %}
-    <div class="container mx-auto px-4">
-        <input type="text" id="searchInput" placeholder="Buscar por nombre o tag" class="w-full bg-gray-800 text-white border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus-ring-blue-500">
-        <div class="mt-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="searchResults">
-            {% for log in logs %}
-                <a href="{% url 'log' log_id=log.id %}" class="block max-w-sm rounded overflow-hidden shadow-lg bg-gray-800 p-4 hover:bg-gray-700 transition duration-300">
-                    <div class="px-6 py-4">
-                        <div class="font-bold text-xl mb-2 text-white">{{ log.vm_name }}</div>
-                        <p class="text-blue-700 text-base">
-                            {{ log.tags|hashtags|lower }}
-                        </p>
-                    </div>
-                </a>
-            {% endfor %}
-        </div>
+<div class="container mx-auto px-4">
+    <h1 class="text-4xl font-bold">Máquinas Virtuales</h1> No olvides practicar
+    <input type="text" id="searchInput" placeholder="Buscar por nombre, tag o plataforma"
+        class="mt-2 w-full bg-gray-800 text-white border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus-ring-blue-500">
+    <div class="mt-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="searchResults">
+        {% for log in logs %}
+        <a href="{% url 'log' log_id=log.id %}"
+            class="block max-w-sm rounded overflow-hidden shadow-lg bg-gray-800 p-4 hover:bg-gray-700 transition duration-300">
+            <div class="px-6 py-4">
+                <div class="font-bold text-xl mb-2 text-white">
+                    {{ log.vm_name }}
+                    <label class="text-sm">({{ log.get_platform_display }})</label>
+                </div>
+                <p class="text-blue-700 text-base">
+                    {{ log.tags|hashtags|lower }}
+                </p>
+            </div>
+        </a>
+        {% endfor %}
     </div>
-    <script src="{% static 'scripts/search.js' %}"></script>
+</div>
+<script src="{% static 'scripts/search.js' %}"></script>
 {% endblock %}

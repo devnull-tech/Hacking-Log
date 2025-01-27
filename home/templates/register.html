@@ -1,0 +1,21 @@
+{% extends 'guest.html' %}
+{% block content %}
+<div class="min-h-screen flex items-center justify-center bg-gray-900 text-white">
+    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+        <h2 class="text-2xl mb-4">Register</h2>
+        <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="mb-4">
+                    <label for="{{ field.id_for_label }}" class="block">{{ field.label }}</label>
+                    <input type="{% if field.name|slice:":8" == "password" %}password{% else %}{{ field.widget.type }}{% endif %}" name="{{ field.name }}" required class="mt-1 block w-full p-2 bg-gray-700 text-white rounded" value="{{ field.value|default:'' }}">
+                    {% for error in field.errors %}
+                        <p class="text-red-500">{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            <button type="submit" class="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Register</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

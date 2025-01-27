@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from home.models import Layout
 from . import models
 
@@ -7,12 +8,7 @@ def home_redirect(request):
 
 def index(request):
     layout_data = Layout.objects.filter(in_use=True).first()
-    platform = None
-    if request.path == "/hacklog/vulnhub/":
-        platform = "VH"
-    if request.path == "/hacklog/hackthebox/":
-        platform = "HTB"
-    logs = models.Log.objects.filter(platform=platform, is_public=True)
+    logs = models.Log.objects.filter(is_public=True)
     return render(request, 'hacklog/index.html', {
         'layout_data': layout_data,
         'logs': logs
@@ -26,6 +22,7 @@ def log(request, log_id):
         'log': log
     })
 
+@login_required
 def glosary(request):
     layout_data = Layout.objects.filter(in_use=True).first()
     all_terms = models.Term.objects.all()
@@ -34,6 +31,7 @@ def glosary(request):
         'terms': all_terms
     })
 
+@login_required
 def term(request, term_id):
     layout_data = Layout.objects.filter(in_use=True).first()
     term = get_object_or_404(models.Term, id=term_id)
@@ -43,7 +41,8 @@ def term(request, term_id):
         'layout_data': layout_data,
         'terms': term_as_list
     })
-    
+
+@login_required    
 def tips(request):
     layout_data = Layout.objects.filter(in_use=True).first()
     all_tips = models.Tip.objects.all()

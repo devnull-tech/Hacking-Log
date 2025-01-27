@@ -3,6 +3,7 @@ module.exports = {
   content: [
     './tools/templates/**/*.html',
     './hacklog/templates/**/*.html',
+    './intrudex/templates/**/*.html',
     './home/templates/**/*.html',
   ],
   theme: {

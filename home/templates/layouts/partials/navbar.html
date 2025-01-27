@@ -6,13 +6,21 @@
                 <span class="text-xl font-bold">Hacking Log</span>
             </a>
             <div class="hidden md:flex space-x-4">
-                <a href="{% url 'home' %}" class="hover:bg-gray-700 px-3 py-2 rounded">Inicio</a>
-                <a href="{% url 'glosary' %}" class="hover:bg-gray-700 px-3 py-2 rounded">Glosario</a>
-                <a href="{% url 'vulnhub_index' %}" class="hover:bg-gray-700 px-3 py-2 rounded">VulnHub</a>
-                <a href="{% url 'hackthebox_index' %}" class="hover:bg-gray-700 px-3 py-2 rounded">HackTheBox</a>
-                <a href="{% url 'tips' %}" class="hover:bg-gray-700 px-3 py-2 rounded">Tips</a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'glosary' %}" class="hover:bg-gray-700 px-3 py-2 rounded">Glosario</a>
+                {% endif %}
+                <a href="{% url 'index' %}" class="hover:bg-gray-700 px-3 py-2 rounded">Máquinas Virtuales</a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'tips' %}" class="hover:bg-gray-700 px-3 py-2 rounded">Tips</a>
+                {% endif %}
                 <a href="{% url 'tools_index' %}" class="hover:bg-gray-700 px-3 py-2 rounded">Herramientas</a>
                 <a href="{% url 'contact' %}" class="hover:bg-gray-700 px-3 py-2 rounded">Contacto</a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'logout' %}" class="hover:bg-gray-700 px-3 py-2 rounded">Cerrar Sesión</a>
+                {% else %}
+                    <a href="{% url 'register' %}" class="hover:bg-gray-700 px-3 py-2 rounded">Registrarse</a>
+                    <a href="{% url 'login' %}" class="hover:bg-gray-700 px-3 py-2 rounded">Acceder</a>
+                {% endif %}
             </div>
             <div class="md:hidden flex items-center">
                 <button id="mobile-menu-button">
@@ -24,13 +32,22 @@
         </div>
     </nav>
     <div id="mobile-menu" class="hidden bg-gray-800 md:hidden">
-        <a href="{% url 'home' %}" class="block px-4 py-2 hover:bg-gray-700">Inicio</a>
-        <a href="{% url 'glosary' %}" class="block px-4 py-2 hover:bg-gray-700">Glosario</a>
-        <a href="{% url 'vulnhub_index' %}" class="block px-4 py-2 hover:bg-gray-700">VulnHub</a>
-        <a href="{% url 'hackthebox_index' %}" class="block px-4 py-2 hover:bg-gray-700">HackTheBox</a>
-        <a href="{% url 'tips' %}" class="block px-4 py-2 hover:bg-gray-700">Tips</a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'glosary' %}" class="block px-4 py-2 hover:bg-gray-700">Glosario</a>
+        {% endif %}
+        <a href="{% url 'index' %}" class="block px-4 py-2 hover:bg-gray-700">Máquinas Virtuales</a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'tips' %}" class="block px-4 py-2 hover:bg-gray-700">Tips</a>
+        {% endif %}
         <a href="{% url 'tools_index' %}" class="block px-4 py-2 hover:bg-gray-700">Herramientas</a>
         <a href="{% url 'contact' %}" class="block px-4 py-2 hover:bg-gray-700">Contacto</a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}" class="block px-4 py-2 hover:bg-gray-700">Cerrar Sesión</a>
+        {% else %}
+            <a href="{% url 'register' %}" class="block px-4 py-2 hover:bg-gray-700">Registrarse</a>
+            <a href="{% url 'login' %}" class="block px-4 py-2 hover:bg-gray-700">Acceder</a>
+        {% endif %}
+
     </div>
     <script>
         const mobileMenuButton = document.getElementById('mobile-menu-button');

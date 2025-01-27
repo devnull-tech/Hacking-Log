@@ -1,5 +1,4 @@
 from django.db import models
-from openai import OpenAI
 
 class Tip(models.Model):
     title = models.CharField(max_length=200)

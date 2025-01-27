@@ -18,8 +18,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home',
     'hacklog',
-    'tools'
+    'tools',
+    'intrudex'
 ]
+
+LOGIN_URL = "/login"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
