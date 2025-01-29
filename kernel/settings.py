@@ -18,8 +18,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home',
     'hacklog',
-    'tools',
-    'intrudex'
+    'tools'
 ]
 
 LOGIN_URL = "/login"

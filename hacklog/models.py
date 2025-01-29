@@ -27,5 +27,17 @@ class Log(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def to_json(self):
+        return {
+            'vm_name': self.vm_name,
+            'platform': self.platform,
+            'operating_system': self.operating_system,
+            'tags': self.tags,
+            'html_writeup': self.html_writeup,
+            'is_public': self.is_public,
+            'created_at': self.created_at,
+            'updated_at': self.updated_at
+        }
+
     def __str__(self) -> str:
         return self.vm_name
